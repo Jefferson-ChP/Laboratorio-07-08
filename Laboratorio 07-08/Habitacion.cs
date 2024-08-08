@@ -9,24 +9,34 @@ namespace Laboratorio_07_08
 {
     public class Habitacion
     {
-        List<Habitacion> listaHabitacion;
+
+        //Variables
+
+        List<Habitacion> listaHabitaciones;
         public int Numero { get; set; }
         public double PrecioNoche { get; set; }
         public bool Disponibilidad { get; set; }
         public string ClienteAsignado { get; set; }
 
-        public Habitacion(int numero, double precionoche, bool disponibilidad, string clienteAsignado)
+        //Constructor
+
+        public Habitacion(int numero, double precionoche, bool disponibilidad, string clienteasignado)
         {
             Numero = numero;
             PrecioNoche = precionoche;
             Disponibilidad = disponibilidad;
-            ClienteAsignado = clienteAsignado;
+            ClienteAsignado = clienteasignado;
         }
+
+        //Creación lista
 
         public Habitacion()
         {
-            listaHabitacion = new List<Habitacion>();
+            listaHabitaciones = new List<Habitacion>();
         }
+
+        //Función para mostrar información de la habitación
+
         public void MostrarInformacion()
         {
             Console.Clear();
@@ -42,6 +52,8 @@ namespace Laboratorio_07_08
             }
         }
 
+        //Función para cambiar la disponibilidad de la habitación
+
         public bool CambiarDisponibilidad(bool disponible)
         {
             if (disponible == true )
@@ -53,27 +65,51 @@ namespace Laboratorio_07_08
                 return disponible = true;
             }
         }
+
+        //Función para asignar un cliente a la habitación
+
         public string AsignarCliente(string nombreCliente)
         {
             return ClienteAsignado = nombreCliente;
         }
+
+        //Función para liberar una habitación
+
         public void LiberarHabitacion()
         {
+
+            //Condicional en caso de que la habitación esté ocupada y haya una persona asignada
+
             if (Disponibilidad == true && ClienteAsignado != null)
             {
                 Disponibilidad = false;
                 ClienteAsignado = "";
             }
-            else if(Disponibilidad == true && ClienteAsignado == null)
+
+            //Condicional en caso de que la habitación esté ocupada y no haya una persona asignada
+
+            else if (Disponibilidad == true && ClienteAsignado == null)
             {
                 Disponibilidad = false;
             }
+
+            //Condicional en caso de que la habitación esté libre pero haya una persona asignada
+
+            else if (Disponibilidad == false && ClienteAsignado != null)
+            {
+                ClienteAsignado = "";
+            }
+            //Condicional en caso de que la habitación ya esté libre
+
             else
             {
                 Console.WriteLine("La habitación ya está liberada.");
                 Console.ReadKey();
             }
         }
+
+        //Función para mostrar el menu del hotel
+
         public void MenuHotel()
         {
             Console.Clear();
@@ -88,13 +124,18 @@ namespace Laboratorio_07_08
             Console.WriteLine("===========================================\n");
             Console.Write("Seleccione alguna de las opciones: ");
         }
+
+        //Función para mostrar el menú de tipo de habitación
+
         public void TipoHabitacion()
         {
+            Console.Clear();
             Console.WriteLine("=======================================");
             Console.WriteLine("1. Habitación simple.");
             Console.WriteLine("2. Habitación doble.");
             Console.WriteLine("3. Habitación suite.");
             Console.WriteLine("4. Habitación deluxe.");
+            Console.WriteLine("5. Regresar al menú.");
             Console.WriteLine("=======================================\n");
             Console.WriteLine("Seleccione el tipo de habitación: ");
         }

@@ -8,14 +8,32 @@ namespace Laboratorio_07_08
 {
     public class Simple : Habitacion
     {
+
+        //Variables
+
+        List<Simple> listaSimple;
         public int NumeroCamas { get; set; }
-        public Simple(int numero, double precionoche, bool disponibilidad, string clienteAsignado, int numerocamas)
+
+        //Constructor
+
+        public Simple(int numerocamas)
         {
             NumeroCamas = numerocamas;
         }
+
+        //Constructor lista
+
+        public Simple()
+        {
+            listaSimple = new List<Simple>();
+        }
+
+        //función para introducir el número de camas
+
         public void IntroducirNumeroCamas()
         {
-            Console.WriteLine("Ingrese el número de camas que desea para la habitación: ");
+            Console.Clear();
+            Console.Write("Ingrese el número de camas que desea para la habitación: ");
         }
     }
 }
